@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("University Cafeteria Inventory code first")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bfba57283e8d2fe32bb4dfe57fa835fbca4b8fcc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fd22af8af344f27c176eac1332705e4befb6308c")]
 [assembly: System.Reflection.AssemblyProductAttribute("University Cafeteria Inventory code first")]
 [assembly: System.Reflection.AssemblyTitleAttribute("University Cafeteria Inventory code first")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

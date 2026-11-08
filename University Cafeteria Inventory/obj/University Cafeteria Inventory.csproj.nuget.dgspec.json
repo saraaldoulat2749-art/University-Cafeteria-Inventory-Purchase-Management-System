@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Desktop\\University Cafeteria Inventory\\University Cafeteria Inventory\\University Cafeteria Inventory.csproj": {}
+    "C:\\Users\\user\\Desktop\\University-Cafeteria-Inventory-Purchase-Management-System\\University Cafeteria Inventory\\University Cafeteria Inventory.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Desktop\\University Cafeteria Inventory\\University Cafeteria Inventory\\University Cafeteria Inventory.csproj": {
+    "C:\\Users\\user\\Desktop\\University-Cafeteria-Inventory-Purchase-Management-System\\University Cafeteria Inventory\\University Cafeteria Inventory.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Desktop\\University Cafeteria Inventory\\University Cafeteria Inventory\\University Cafeteria Inventory.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Desktop\\University-Cafeteria-Inventory-Purchase-Management-System\\University Cafeteria Inventory\\University Cafeteria Inventory.csproj",
         "projectName": "University Cafeteria Inventory",
-        "projectPath": "C:\\Users\\user\\Desktop\\University Cafeteria Inventory\\University Cafeteria Inventory\\University Cafeteria Inventory.csproj",
+        "projectPath": "C:\\Users\\user\\Desktop\\University-Cafeteria-Inventory-Purchase-Management-System\\University Cafeteria Inventory\\University Cafeteria Inventory.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Desktop\\University Cafeteria Inventory\\University Cafeteria Inventory\\obj\\",
+        "outputPath": "C:\\Users\\user\\Desktop\\University-Cafeteria-Inventory-Purchase-Management-System\\University Cafeteria Inventory\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

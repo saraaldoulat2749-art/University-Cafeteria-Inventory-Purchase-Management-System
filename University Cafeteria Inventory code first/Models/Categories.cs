@@ -1,11 +1,15 @@
-﻿namespace University_Cafeteria_Inventory_code_first.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace University_Cafeteria_Inventory_code_first.Models;
+
+public partial class Category
 {
-    public class Categories
-    {
-        public int id { get; set; }
+    public int Id { get; set; }
 
-        public string name { get; set; }
+    public string? NameC { get; set; }
 
-        public string Discription { get; set; }
-    }
+    public string? DescriptionC { get; set; }
+
+    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

@@ -1,12 +1,21 @@
-﻿namespace University_Cafeteria_Inventory_code_first.Models
-{
-    public class PurchaseOrderItems
-    {
-        public int id { get; set; }
-        public int purchaseOrderId { get; set; }
-        public int productId { get; set; }
-        public int quantity { get; set; }
+﻿using System;
+using System.Collections.Generic;
 
-        public decimal price { get; set; }
-    }
+namespace University_Cafeteria_Inventory_code_first.Models;
+
+public partial class PurchaseOrderItems
+{
+    public int Id { get; set; }
+
+    public int? PurchaseOrderId { get; set; }
+
+    public int? ProductId { get; set; }
+
+    public int? Quantity { get; set; }
+
+    public decimal? UnitPrice { get; set; }
+
+    public virtual Product? Product { get; set; }
+
+    public virtual PurchaseOrders? PurchaseOrder { get; set; }
 }

@@ -1,12 +1,26 @@
-﻿namespace University_Cafeteria_Inventory_code_first.Models
+﻿using System;
+using System.Collections.Generic;
+using University_Cafeteria_Inventory_code_first.Models;
+
+namespace University_Cafeteria_Inventory_code_first.Models;
+
+public partial class Product
 {
-    public class Products
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int quantity { get; set; }
-        public decimal price { get; set; }
-        public int categoryId { get; set; }
-        public int supplierId { get; set; }
-    }
+    public int Id { get; set; }
+
+    public string? NameP { get; set; }
+
+    public decimal? Price { get; set; }
+
+    public int? Quantity { get; set; }
+
+    public int? CategoryId { get; set; }
+
+    public int? SupplierId { get; set; }
+
+    public virtual Category? Category { get; set; }
+
+    public virtual ICollection<PurchaseOrderItems> PurchaseOrderItems { get; set; } = new List<PurchaseOrderItems>();
+
+    public virtual Supplier? Supplier { get; set; }
 }

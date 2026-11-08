@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KoSc6zlct/4=",
+  "dgSpecHash": "rG5dcpVsrQE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Desktop\\University Cafeteria Inventory\\University Cafeteria Inventory\\University Cafeteria Inventory.csproj",
+  "projectFilePath": "C:\\Users\\user\\Desktop\\University-Cafeteria-Inventory-Purchase-Management-System\\University Cafeteria Inventory\\University Cafeteria Inventory.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.50.0\\azure.core.1.50.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.identity\\1.17.1\\azure.identity.1.17.1.nupkg.sha512",
