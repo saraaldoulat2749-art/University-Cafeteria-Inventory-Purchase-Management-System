@@ -1,0 +1,26 @@
+﻿@model List<Supplier>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">NameS</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+
+        </tr>
+    </thead>
+    <tbody>
+      @foreach(var supplier in Model)
+      {
+          <tr>
+              <td>@supplier.Id</td>
+              <td>@supplier.NameS</td>
+              <td>@supplier.Email</td>
+              <td>@supplier.Phone</td>
+          </tr>
+      }
+      
+    </tbody>
+</table>

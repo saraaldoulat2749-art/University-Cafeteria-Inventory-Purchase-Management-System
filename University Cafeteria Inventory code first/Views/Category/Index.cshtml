@@ -1,0 +1,22 @@
+﻿@model List<Category> 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">NameC</th>
+            <th scope="col">DescriptionC</th>
+        </tr>
+    </thead>
+    <tbody>
+      @foreach(var category in Model)
+      {
+          <tr>
+              <td>@category.Id</td>
+              <td>@category.NameC</td>
+              <td>@category.DescriptionC</td>
+          </tr>
+      }
+      
+    </tbody>
+</table>
