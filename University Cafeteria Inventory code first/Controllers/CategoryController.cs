@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using University_Cafeteria_Inventory_code_first.Data;
 using University_Cafeteria_Inventory_code_first.Models;
 
@@ -13,7 +14,7 @@ namespace University_Cafeteria_Inventory_code_first.Controllers
         }
         public IActionResult Index()
         {
-            var categories = _context.Categories.ToList();
+            var categories = _context.Categories.Include(c => c.Products).ToList();
             return View(categories);
         }
         [HttpGet]
@@ -31,6 +32,39 @@ namespace University_Cafeteria_Inventory_code_first.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
+            return View(category);
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var category = _context.Categories.Find(id);
+            return View(category);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Category category) 
+        {
+                _context.Categories.Update(category);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var category = _context.Categories.Find(id);
+
+            if (category != null)
+            {
+                _context.Categories.Remove(category);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var category = _context.Categories.Find(id);
             return View(category);
         }
     }

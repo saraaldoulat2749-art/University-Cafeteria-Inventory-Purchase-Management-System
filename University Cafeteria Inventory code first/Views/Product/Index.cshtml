@@ -7,8 +7,11 @@
             <th scope="col">NameP</th>
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
+            <th scope="col">Status</th>
             <th scope="col">CategoryId</th>
             <th scope="col">SupplierId</th>
+            <th scope="col">Actions</th>
+
 
 
         </tr>
@@ -21,8 +24,25 @@
                 <td>@product.NameP</td>
                 <td>@product.Price</td>
                 <td>@product.Quantity</td>
+                <td>
+                    @if (product.Quantity < 5)
+                    {
+                        <span class="badge bg-danger">Low Stock</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success">Available</span>
+                    }
+                </td>
                 <td>@product.CategoryId</td>
                 <td>@product.SupplierId</td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger">Delete</a>
+                    <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-info">Details</a>
+
+                </td>
             </tr>
         }
 

@@ -8,19 +8,30 @@
             <th scope="col">NameS</th>
             <th scope="col">Email</th>
             <th scope="col">Phone</th>
+            <th scope="col">Actions</th>
+
 
         </tr>
     </thead>
     <tbody>
-      @foreach(var supplier in Model)
-      {
-          <tr>
-              <td>@supplier.Id</td>
-              <td>@supplier.NameS</td>
-              <td>@supplier.Email</td>
-              <td>@supplier.Phone</td>
-          </tr>
-      }
-      
+        @foreach (var supplier in Model)
+        {
+            <tr>
+                <td>@supplier.Id</td>
+                <td>@supplier.NameS</td>
+                <td>@supplier.Email</td>
+                <td>@supplier.Phone</td>
+
+
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@supplier.Id" class="btn btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@supplier.Id" class="btn btn-danger">Delete</a>
+                    <a asp-action="Details" asp-route-id="@supplier.Id" class="btn btn-info">Details</a>
+                    <a></a>
+
+                </td>
+            </tr>            
+        }
     </tbody>
 </table>

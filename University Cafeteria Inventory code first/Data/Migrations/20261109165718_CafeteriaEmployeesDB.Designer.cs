@@ -12,7 +12,7 @@ using University_Cafeteria_Inventory_code_first.Data;
 namespace University_Cafeteria_Inventory_code_first.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20261108115607_CafeteriaEmployeesDB")]
+    [Migration("20261109165718_CafeteriaEmployeesDB")]
     partial class CafeteriaEmployeesDB
     {
         /// <inheritdoc />
@@ -246,6 +246,73 @@ namespace University_Cafeteria_Inventory_code_first.Data.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.Employee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Salary")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -404,6 +471,17 @@ namespace University_Cafeteria_Inventory_code_first.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.Order", b =>
+                {
+                    b.HasOne("University_Cafeteria_Inventory_code_first.Models.Employee", "Employee")
+                        .WithMany("Orders")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.Product", b =>
                 {
                     b.HasOne("University_Cafeteria_Inventory_code_first.Models.Category", "Category")
@@ -446,6 +524,11 @@ namespace University_Cafeteria_Inventory_code_first.Data.Migrations
             modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.Employee", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.Product", b =>

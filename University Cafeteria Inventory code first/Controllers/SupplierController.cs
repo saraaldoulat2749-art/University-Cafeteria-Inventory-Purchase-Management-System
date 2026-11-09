@@ -35,6 +35,38 @@ namespace University_Cafeteria_Inventory_code_first.Controllers
             }
             return View(supplier);
         }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var supplier = _context.Suppliers.Find(id);
+            return View(supplier);
+        }
 
+        [HttpPost]
+        public IActionResult Edit(Supplier supplier)
+        {
+            _context.Suppliers.Update(supplier);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var supplier = _context.Suppliers.Find(id);
+
+            if (supplier != null)
+            {
+                _context.Suppliers.Remove(supplier);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var supplier = _context.Suppliers.Find(id);
+            return View(supplier);
+        }
     }
 }
