@@ -1,0 +1,27 @@
+﻿@model SupplyRequest
+
+<h2>Request Details</h2>
+
+<p>Status: @Model.Status</p>
+<p>Date: @Model.RequestDate</p>
+
+<table class="table">
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+    </tr>
+
+    @foreach (var item in Model.RequestItems)
+    {
+        <tr>
+            <td>@item.Product.NameP</td>
+            <td>@item.Quantity</td>
+            <td>@item.Price</td>
+        </tr>
+    }
+</table>
+
+<h4>Total: @Model.TotalPrice</h4>
+
+<a asp-action="Index" class="btn btn-secondary">Back</a>

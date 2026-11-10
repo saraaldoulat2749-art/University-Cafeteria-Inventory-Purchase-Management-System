@@ -1,0 +1,25 @@
+﻿@model RegisterDTO
+
+<form asp-controller="Account" asp-action="Register" method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <label>User Name:</label>
+    <input name="UserName" type="text" />
+    <br />
+
+    <label>Email:</label>
+    <input name="Email" type="email" />
+    <br />
+
+    <label>Password:</label>
+    <input name="Password" type="password" />
+    <br />
+
+    <label>Confirm Password:</label>
+    <input name="ConfirmPassword" type="password" />
+    <br />
+
+    <button type="submit">Sign Up</button>
+
+</form>

@@ -1,0 +1,30 @@
+﻿@model SupplyRequest
+
+<h2>Edit Supply Request</h2>
+
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+
+    <label>Product:</label>
+    <select name="productId" class="form-control">
+        @foreach (var product in ViewBag.Products)
+        {
+            <option value="@product.Id"
+                    selected="@(Model.RequestItems.Any(i => i.ProductId == product.Id))">
+                @product.NameP - @product.Price
+            </option>
+        }
+    </select>
+
+    <br />
+
+    <label>Quantity:</label>
+    <input type="number" name="quantity"
+           value="@Model.RequestItems.FirstOrDefault()?.Quantity"
+           min="1" class="form-control" />
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">
+        Save Changes
+    </button>
+</form>

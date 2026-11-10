@@ -105,7 +105,8 @@ namespace University_Cafeteria_Inventory_code_first.Data.Migrations
                         name: "FK_Products_Suppliers_SupplierId",
                         column: x => x.SupplierId,
                         principalTable: "Suppliers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);//اذا كان هناك منتج مرتبط بمورد وتم حذف المورد، سيتم حذف المنتج تلقائيًا
                 });
 
             migrationBuilder.CreateTable(

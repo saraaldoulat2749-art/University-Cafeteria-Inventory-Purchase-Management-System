@@ -1,0 +1,21 @@
+﻿@model LoginDTO
+
+<form asp-controller="Account" asp-action="Login" method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <label>Email:</label>
+    <input asp-for="Email" />
+    <br />
+
+    <label>Password:</label>
+    <input asp-for="Password" />
+    <br />
+
+    <label>Remember Me:</label>
+    <input asp-for="RememberMe" type="checkbox" />
+    <br />
+
+    <button type="submit">Sign In</button>
+
+</form>

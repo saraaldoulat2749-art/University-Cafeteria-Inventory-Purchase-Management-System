@@ -26,12 +26,12 @@ namespace University_Cafeteria_Inventory_code_first.Controllers
         [HttpPost]
         public IActionResult Create(Category category)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 _context.Categories.Add(category);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
-            }
+           // }
             return View(category);
         }
         [HttpGet]
@@ -52,7 +52,12 @@ namespace University_Cafeteria_Inventory_code_first.Controllers
         public IActionResult Delete(int id)
         {
             var category = _context.Categories.Find(id);
-
+            var products = _context.Products.Where(p => p.CategoryId == id).ToList();
+            foreach(var product in products)
+            {
+                _context.Products.Remove(product);
+                _context.SaveChanges();
+            }
             if (category != null)
             {
                 _context.Categories.Remove(category);

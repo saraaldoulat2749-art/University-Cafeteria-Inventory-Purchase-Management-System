@@ -1,0 +1,69 @@
+﻿
+@model List<SupplyRequest>
+
+<h2>Supply Requests</h2>
+
+<a asp-action="Create" class="btn btn-success mb-3">
+    Create Request
+</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Request Date</th>
+            <th>Total Price</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.Id</td>
+                <td>@request.RequestDate</td>
+                <td>@request.TotalPrice</td>
+                <td>@request.Status</td>
+
+                <td>
+                    <a asp-action="Details"
+                       asp-route-id="@request.Id"
+                       class="btn btn-info">
+                        Details
+                    </a>
+
+                    @if ((User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                        && request.Status == "Pending")
+                    {
+                        <form asp-action="Approve" method="post" style="display:inline">
+                            <input type="hidden" name="id" value="@request.Id" />
+                            <button type="submit" class="btn btn-success">Approve</button>
+                        </form>
+
+                        <form asp-action="Reject" method="post" style="display:inline">
+                            <input type="hidden" name="id" value="@request.Id" />
+                            <button type="submit" class="btn btn-warning">Reject</button>
+                        </form>
+                    }
+
+                    @if (request.UserId == User.FindFirst(
+                        System.Security.Claims.ClaimTypes.NameIdentifier)?.Value
+                        && request.Status == "Pending")
+                    {
+                        <form asp-action="Delete" method="post" style="display:inline">
+                            <input type="hidden" name="id" value="@request.Id" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    }
+                    <a asp-action="Edit"
+   asp-route-id="@request.Id"
+   class="btn btn-primary">
+    Edit
+</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

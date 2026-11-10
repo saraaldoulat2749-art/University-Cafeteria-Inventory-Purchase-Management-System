@@ -1,5 +1,12 @@
-﻿@model List<Supplier>
+﻿
+@model List<Supplier>
 
+@if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+{
+    <a asp-action="Create" class="btn btn-success mb-3">
+        Create New Supplier
+    </a>
+}
 
 <table class="table">
     <thead>
@@ -9,10 +16,9 @@
             <th scope="col">Email</th>
             <th scope="col">Phone</th>
             <th scope="col">Actions</th>
-
-
         </tr>
     </thead>
+
     <tbody>
         @foreach (var supplier in Model)
         {
@@ -22,16 +28,24 @@
                 <td>@supplier.Email</td>
                 <td>@supplier.Phone</td>
 
-
-
                 <td>
-                    <a asp-action="Edit" asp-route-id="@supplier.Id" class="btn btn-primary">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@supplier.Id" class="btn btn-danger">Delete</a>
-                    <a asp-action="Details" asp-route-id="@supplier.Id" class="btn btn-info">Details</a>
-                    <a></a>
+                    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                    {
+                        <a asp-action="Edit"
+                           asp-route-id="@supplier.Id"
+                           class="btn btn-primary">Edit</a>
 
+                        <form asp-action="Delete" method="post" style="display:inline">
+                            <input type="hidden" name="id" value="@supplier.Id" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    }
+
+                    <a asp-action="Details"
+                       asp-route-id="@supplier.Id"
+                       class="btn btn-info">Details</a>
                 </td>
-            </tr>            
+            </tr>
         }
     </tbody>
 </table>

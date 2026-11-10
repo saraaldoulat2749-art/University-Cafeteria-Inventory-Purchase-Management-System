@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IdentityUser
+
+<h2>Edit User Role</h2>
+
+<form asp-controller="Admin" asp-action="Edit" method="post">
+
+    <input type="hidden" name="id" value="@Model.Id" />
+
+    <label>User Name:</label>
+    <input value="@Model.UserName" readonly class="form-control" />
+
+    <br />
+
+    <label>Role:</label>
+    <select name="roleName" class="form-control">
+        @foreach (var role in ViewBag.Roles)
+        {
+            <option value="@role.Name">@role.Name</option>
+        }
+    </select>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+
+</form>

@@ -318,7 +318,7 @@ namespace University_Cafeteria_Inventory_code_first.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("NameP")
@@ -330,7 +330,7 @@ namespace University_Cafeteria_Inventory_code_first.Data.Migrations
                     b.Property<int?>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SupplierId")
+                    b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -395,6 +395,35 @@ namespace University_Cafeteria_Inventory_code_first.Data.Migrations
                     b.ToTable("PurchaseOrders");
                 });
 
+            modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.RequestItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupplyRequestId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("SupplyRequestId");
+
+                    b.ToTable("RequestItems");
+                });
+
             modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.Supplier", b =>
                 {
                     b.Property<int>("Id")
@@ -415,6 +444,35 @@ namespace University_Cafeteria_Inventory_code_first.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Suppliers");
+                });
+
+            modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.SupplyRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("RequestDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("SupplyRequests");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -483,11 +541,15 @@ namespace University_Cafeteria_Inventory_code_first.Data.Migrations
                 {
                     b.HasOne("University_Cafeteria_Inventory_code_first.Models.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("University_Cafeteria_Inventory_code_first.Models.Supplier", "Supplier")
                         .WithMany("Products")
-                        .HasForeignKey("SupplierId");
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Category");
 
@@ -518,6 +580,36 @@ namespace University_Cafeteria_Inventory_code_first.Data.Migrations
                     b.Navigation("Supplier");
                 });
 
+            modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.RequestItem", b =>
+                {
+                    b.HasOne("University_Cafeteria_Inventory_code_first.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("University_Cafeteria_Inventory_code_first.Models.SupplyRequest", "SupplyRequest")
+                        .WithMany("RequestItems")
+                        .HasForeignKey("SupplyRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("SupplyRequest");
+                });
+
+            modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.SupplyRequest", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.Category", b =>
                 {
                     b.Navigation("Products");
@@ -543,6 +635,11 @@ namespace University_Cafeteria_Inventory_code_first.Data.Migrations
                     b.Navigation("Products");
 
                     b.Navigation("PurchaseOrders");
+                });
+
+            modelBuilder.Entity("University_Cafeteria_Inventory_code_first.Models.SupplyRequest", b =>
+                {
+                    b.Navigation("RequestItems");
                 });
 #pragma warning restore 612, 618
         }

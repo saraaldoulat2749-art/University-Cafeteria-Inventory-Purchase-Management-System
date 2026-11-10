@@ -1,0 +1,31 @@
+﻿
+<h2>Create Supply Request</h2>
+
+<form asp-controller="SupplyRequest" asp-action="Create" method="post">
+
+    <label>Product:</label>
+    <select name="productId" class="form-control">
+        @foreach (var product in ViewBag.Products)
+        {
+            <option value="@product.Id">
+                @product.NameP - @product.Price
+            </option>
+        }
+    </select>
+
+    <br />
+
+    <label>Quantity:</label>
+    <input type="number"
+           name="quantity"
+           min="1"
+           required
+           class="form-control" />
+
+    <br />
+
+    <button type="submit" class="btn btn-success">
+        Submit Request
+    </button>
+
+</form>
